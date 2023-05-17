@@ -1,5 +1,8 @@
 package com.example.mymealsapp.data
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Meal(
     val idMeal: String,
     val strArea: String,
