@@ -1,6 +1,10 @@
+import com.codingfeline.buildkonfig.compiler.FieldSpec.Type
+
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
+    kotlin("plugin.serialization").version("1.8.21")
+    id("com.codingfeline.buildkonfig")
 }
 
 kotlin {
@@ -11,7 +15,7 @@ kotlin {
             }
         }
     }
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -24,11 +28,22 @@ kotlin {
 
     sourceSets {
         val koin_version = "3.4.0"
+        val ktor_version = "2.3.0"
+        val coroutines_version = "1.7.1"
 
         val commonMain by getting {
             dependencies {
                 //koin
                 api("io.insert-koin:koin-core:$koin_version")
+                //ktor
+                implementation("io.ktor:ktor-client-core:$ktor_version")
+                implementation("io.ktor:ktor-client-json:$ktor_version")
+                implementation("io.ktor:ktor-client-logging:$ktor_version")
+                implementation("io.ktor:ktor-client-serialization:$ktor_version")
+                implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
+                implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
+                //coroutine
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version")
             }
         }
         val commonTest by getting {
@@ -36,7 +51,12 @@ kotlin {
                 implementation(kotlin("test"))
             }
         }
-        val androidMain by getting
+        val androidMain by getting {
+            dependencies {
+                //ktor client
+                implementation("io.ktor:ktor-client-android:$ktor_version")
+            }
+        }
         val androidUnitTest by getting
         val iosX64Main by getting
         val iosArm64Main by getting
@@ -46,6 +66,10 @@ kotlin {
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
+            dependencies {
+                //ktor client
+                implementation("io.ktor:ktor-client-ios:$ktor_version")
+            }
         }
         val iosX64Test by getting
         val iosArm64Test by getting
@@ -64,5 +88,17 @@ android {
     compileSdk = 33
     defaultConfig {
         minSdk = 24
+    }
+}
+
+buildkonfig {
+    packageName = "com.example.mymealsapp"
+    val baseUrl = "baseUrl"
+    defaultConfigs {
+        buildConfigField(
+            Type.STRING,
+            baseUrl,
+            "https://www.themealdb.com/api/json/v1/1/"
+        )
     }
 }

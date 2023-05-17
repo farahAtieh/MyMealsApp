@@ -1,11 +1,39 @@
 package com.example.mymealsapp.di
 
+import com.example.mymealsapp.api.KtorApi
+import com.example.mymealsapp.api.KtorApiImpl
+import com.example.mymealsapp.api.MealsApi
 import com.example.mymealsapp.data.usecases.FetchMealsUseCase
 import com.example.mymealsapp.data.usecases.GetMealsUseCase
 import com.example.mymealsapp.data.usecases.ToggleFavouriteStateUseCase
+import com.example.mymealsapp.repository.MealsRemoteSource
+import com.example.mymealsapp.repository.MealsRepository
+import com.example.mymealsapp.util.getDispatcherProvider
 import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
+
+fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
+    startKoin {
+        appDeclaration()
+        modules(sharedModules)
+    }
+
+//called by IOS
+fun initKoin() = initKoin {}
+
+private val utilityModule = module {
+    factory { getDispatcherProvider() }
+}
+private val apiModule = module {
+    single<KtorApi> { KtorApiImpl }
+    factory { MealsApi(get()) }
+}
+
+private val repositoryModule = module {
+    factory { MealsRemoteSource(get(), get()) }
+    factory { MealsRepository() }
+}
 
 private val usecasesModule = module {
     factory { GetMealsUseCase() }
@@ -13,10 +41,4 @@ private val usecasesModule = module {
     factory { ToggleFavouriteStateUseCase() }
 }
 
-private val sharedModules = listOf(usecasesModule)
-
-fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
-    startKoin{
-        appDeclaration()
-        modules(sharedModules)
-    }
+private val sharedModules = listOf(utilityModule, apiModule, repositoryModule, usecasesModule)
