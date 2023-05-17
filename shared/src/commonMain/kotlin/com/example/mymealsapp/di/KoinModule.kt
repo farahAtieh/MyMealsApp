@@ -6,6 +6,8 @@ import com.example.mymealsapp.api.MealsApi
 import com.example.mymealsapp.data.usecases.FetchMealsUseCase
 import com.example.mymealsapp.data.usecases.GetMealsUseCase
 import com.example.mymealsapp.data.usecases.ToggleFavouriteStateUseCase
+import com.example.mymealsapp.db.MealsDatabase
+import com.example.mymealsapp.repository.MealsLocalSource
 import com.example.mymealsapp.repository.MealsRemoteSource
 import com.example.mymealsapp.repository.MealsRepository
 import com.example.mymealsapp.util.getDispatcherProvider
@@ -24,6 +26,7 @@ fun initKoin() = initKoin {}
 
 private val utilityModule = module {
     factory { getDispatcherProvider() }
+    single { MealsDatabase(get()) }
 }
 private val apiModule = module {
     single<KtorApi> { KtorApiImpl }
@@ -32,6 +35,7 @@ private val apiModule = module {
 
 private val repositoryModule = module {
     factory { MealsRemoteSource(get(), get()) }
+    factory { MealsLocalSource(get(), get()) }
     factory { MealsRepository() }
 }
 
@@ -41,4 +45,5 @@ private val usecasesModule = module {
     factory { ToggleFavouriteStateUseCase() }
 }
 
-private val sharedModules = listOf(utilityModule, apiModule, repositoryModule, usecasesModule)
+private val sharedModules = listOf(utilityModule, apiModule, repositoryModule, usecasesModule, platformModule)
+

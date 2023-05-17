@@ -5,6 +5,7 @@ plugins {
     id("com.android.library")
     kotlin("plugin.serialization").version("1.8.21")
     id("com.codingfeline.buildkonfig")
+    id("com.squareup.sqldelight")
 }
 
 kotlin {
@@ -30,6 +31,7 @@ kotlin {
         val koin_version = "3.4.0"
         val ktor_version = "2.3.0"
         val coroutines_version = "1.7.1"
+        val sqlDelight_version = "1.5.5"
 
         val commonMain by getting {
             dependencies {
@@ -44,6 +46,9 @@ kotlin {
                 implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
                 //coroutine
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version")
+                //sqlDelight
+                implementation("com.squareup.sqldelight:runtime:$sqlDelight_version")
+                implementation( "com.squareup.sqldelight:coroutines-extensions:$sqlDelight_version")
             }
         }
         val commonTest by getting {
@@ -55,6 +60,8 @@ kotlin {
             dependencies {
                 //ktor client
                 implementation("io.ktor:ktor-client-android:$ktor_version")
+                //sqlDelight android driver
+                implementation("com.squareup.sqldelight:android-driver:$sqlDelight_version")
             }
         }
         val androidUnitTest by getting
@@ -69,6 +76,8 @@ kotlin {
             dependencies {
                 //ktor client
                 implementation("io.ktor:ktor-client-ios:$ktor_version")
+                //sqlDelight ios driver
+                implementation("com.squareup.sqldelight:native-driver:$sqlDelight_version")
             }
         }
         val iosX64Test by getting
@@ -100,5 +109,12 @@ buildkonfig {
             baseUrl,
             "https://www.themealdb.com/api/json/v1/1/"
         )
+    }
+}
+
+sqldelight{
+    database("MealsDatabase"){
+        packageName = "com.example.mymealsapp.db"
+        sourceFolders = listOf("sqldelight")
     }
 }
