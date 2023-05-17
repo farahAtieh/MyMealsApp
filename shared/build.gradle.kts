@@ -23,7 +23,14 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting
+        val koin_version = "3.4.0"
+
+        val commonMain by getting {
+            dependencies {
+                //koin
+                api("io.insert-koin:koin-core:$koin_version")
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
