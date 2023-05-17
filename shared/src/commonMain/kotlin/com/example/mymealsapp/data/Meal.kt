@@ -1,14 +1,19 @@
 package com.example.mymealsapp.data
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class Meal(
-    val idMeal: String,
-    val strArea: String,
-    val strCategory: String,
-    val strInstructions: String,
-    val strMeal: String,
-    val strMealThumb: String,
+    @SerialName("idMeal")
+    val id: String,
+    @SerialName("strMeal")
+    val name: String,
+    @SerialName("strMealThumb")
+    val imageUrl: String,
+    @SerialName("strCategory")
+    val category: String,
+    @SerialName("strInstructions")
+    val instructions: String,
     val isFavourite: Boolean = false
 )
