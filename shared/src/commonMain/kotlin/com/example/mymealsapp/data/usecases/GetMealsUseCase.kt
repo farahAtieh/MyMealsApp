@@ -7,5 +7,5 @@ import org.koin.core.component.inject
 
 class GetMealsUseCase : KoinComponent{
     private val mealsRepository: MealsRepository by inject()
-    suspend fun invoke(): List<Meal> = mealsRepository.get()
+    suspend fun invoke(parameterValue: String): List<Meal> = mealsRepository.get(parameterValue)
 }

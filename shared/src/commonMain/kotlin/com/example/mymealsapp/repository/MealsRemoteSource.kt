@@ -9,7 +9,7 @@ internal class MealsRemoteSource(
     private val dispatcherProvider: DispatcherProvider,
 ) {
 
-    suspend fun getMeals() = withContext(dispatcherProvider.io) {
-        mealsApi.getMeals()
+    suspend fun getMealsByFirstLetter(parameterValue: String) = withContext(dispatcherProvider.io) {
+        mealsApi.getMealsByFirstLetter(parameterValue).meals ?: arrayListOf()
     }
 }

@@ -8,7 +8,8 @@ import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.plugins.logging.SIMPLE
 import io.ktor.client.request.HttpRequestBuilder
-import io.ktor.http.encodedPath
+import io.ktor.client.request.parameter
+import io.ktor.http.path
 import io.ktor.http.takeFrom
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
@@ -35,10 +36,11 @@ object KtorApiImpl : KtorApi {
             }
         }
 
-    override fun HttpRequestBuilder.apiUrl(path: String) {
+    override fun HttpRequestBuilder.apiUrl(path: String, parameterValue: String) {
         url {
             takeFrom(baseUrl)
-            encodedPath = path
+            path("api", path)
+            parameter("f", parameterValue)
         }
     }
 }

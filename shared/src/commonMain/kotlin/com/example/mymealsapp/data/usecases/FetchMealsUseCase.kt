@@ -8,5 +8,5 @@ import org.koin.core.component.inject
 class FetchMealsUseCase : KoinComponent {
 
     private val breedsRepository: MealsRepository by inject()
-    suspend fun invoke(): List<Meal> = breedsRepository.fetch()
+    suspend fun invoke(parameterValue: String): List<Meal> = breedsRepository.fetch(parameterValue)
 }

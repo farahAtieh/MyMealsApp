@@ -13,17 +13,17 @@ class MealsRepository : KoinComponent {
     private val localSource: MealsLocalSource by inject()
 
     val meals = localSource.meals
-    internal suspend fun get() =
+    internal suspend fun get(parameterValue: String) =
         with(localSource.selectAll()) {
             if (isNullOrEmpty()) {
-                return@with fetch()
+                return@with fetch(parameterValue)
             } else {
                 this
             }
         }
 
-    internal suspend fun fetch() = supervisorScope {
-        remoteSource.getMeals()
+    internal suspend fun fetch(parameterValue: String) = supervisorScope {
+        remoteSource.getMealsByFirstLetter(parameterValue)
             .also { meals ->
                 localSource.clear()
                 meals.map { meal ->
