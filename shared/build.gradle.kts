@@ -62,6 +62,8 @@ kotlin {
                 implementation("io.ktor:ktor-client-android:$ktor_version")
                 //sqlDelight android driver
                 implementation("com.squareup.sqldelight:android-driver:$sqlDelight_version")
+                //koin
+                api("io.insert-koin:koin-android:$koin_version")
             }
         }
         val androidUnitTest by getting
@@ -107,7 +109,7 @@ buildkonfig {
         buildConfigField(
             Type.STRING,
             baseUrl,
-            "https://www.themealdb.com/api/json/v1/1/"
+            "https://www.themealdb.com/"
         )
     }
 }
