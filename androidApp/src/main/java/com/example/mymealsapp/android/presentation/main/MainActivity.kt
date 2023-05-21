@@ -177,9 +177,9 @@ fun Meals(
                         Text(
                             text = meal.name,
                             overflow = TextOverflow.Ellipsis,
-                            maxLines = 1
+                            maxLines = 1,
+                            modifier = Modifier.weight(1f)
                         )
-                        Spacer(modifier = Modifier.weight(1f))
                         Icon(
                             if (meal.isFavourite)
                                 Icons.Filled.Favorite
@@ -187,7 +187,8 @@ fun Meals(
                             contentDescription = "Mark as favourite",
                             modifier = Modifier.clickable {
                                 onFavouriteTapped(meal)
-                            })
+                            }
+                        )
                     }
                 }
             }
