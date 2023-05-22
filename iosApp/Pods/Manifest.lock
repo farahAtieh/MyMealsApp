@@ -1,0 +1,28 @@
+PODS:
+  - Kingfisher (7.6.2)
+  - KMPNativeCoroutinesCore (1.0.0-ALPHA-9)
+  - KMPNativeCoroutinesRxSwift (1.0.0-ALPHA-9):
+    - KMPNativeCoroutinesCore (= 1.0.0-ALPHA-9)
+    - RxSwift (~> 6.0)
+  - RxSwift (6.5.0)
+
+DEPENDENCIES:
+  - Kingfisher (= 7.6.2)
+  - KMPNativeCoroutinesRxSwift (= 1.0.0-ALPHA-9)
+
+SPEC REPOS:
+  trunk:
+    - Kingfisher
+    - KMPNativeCoroutinesCore
+    - KMPNativeCoroutinesRxSwift
+    - RxSwift
+
+SPEC CHECKSUMS:
+  Kingfisher: 6c5449c6450c5239166510ba04afe374a98afc4f
+  KMPNativeCoroutinesCore: 76a7cc059fc892c1d2ba35ec232d1c79bd6e1d56
+  KMPNativeCoroutinesRxSwift: 885720bea8b4cfcb4ec15a06875f365cbd86802b
+  RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
+
+PODFILE CHECKSUM: f8470b2df2f280dea5a68d60c773054a94490995
+
+COCOAPODS: 1.12.1
