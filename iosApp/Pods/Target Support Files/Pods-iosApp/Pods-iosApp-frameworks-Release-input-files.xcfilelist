@@ -1,0 +1,5 @@
+${PODS_ROOT}/Target Support Files/Pods-iosApp/Pods-iosApp-frameworks.sh
+${BUILT_PRODUCTS_DIR}/KMPNativeCoroutinesCore/KMPNativeCoroutinesCore.framework
+${BUILT_PRODUCTS_DIR}/KMPNativeCoroutinesRxSwift/KMPNativeCoroutinesRxSwift.framework
+${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework
+${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework

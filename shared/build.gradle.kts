@@ -6,6 +6,8 @@ plugins {
     kotlin("plugin.serialization").version("1.8.21")
     id("com.codingfeline.buildkonfig")
     id("com.squareup.sqldelight")
+    id("com.google.devtools.ksp").version("1.8.21-1.0.11")
+    id("com.rickclephas.kmp.nativecoroutines").version("1.0.0-ALPHA-9")
 }
 
 kotlin {
@@ -91,6 +93,10 @@ kotlin {
             iosArm64Test.dependsOn(this)
             iosSimulatorArm64Test.dependsOn(this)
         }
+
+        kotlin.sourceSets.all{
+            languageSettings.optIn("kotlin.experimental.ExperimentalObjCName")
+        }
     }
 }
 
@@ -99,6 +105,14 @@ android {
     compileSdk = 33
     defaultConfig {
         minSdk = 24
+    }
+}
+
+
+sqldelight{
+    database("MealsDatabase"){
+        packageName = "com.example.mymealsapp.db"
+        sourceFolders = listOf("sqldelight")
     }
 }
 
@@ -111,12 +125,5 @@ buildkonfig {
             baseUrl,
             "https://www.themealdb.com/"
         )
-    }
-}
-
-sqldelight{
-    database("MealsDatabase"){
-        packageName = "com.example.mymealsapp.db"
-        sourceFolders = listOf("sqldelight")
     }
 }

@@ -1,6 +1,7 @@
 package com.example.mymealsapp.repository
 
 import com.example.mymealsapp.data.Meal
+import com.rickclephas.kmp.nativecoroutines.NativeCoroutinesState
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.supervisorScope
@@ -12,6 +13,7 @@ class MealsRepository : KoinComponent {
     private val remoteSource: MealsRemoteSource by inject()
     private val localSource: MealsLocalSource by inject()
 
+    @NativeCoroutinesState
     val meals = localSource.meals
     internal suspend fun get(parameterValue: String) =
         with(localSource.selectAll()) {
