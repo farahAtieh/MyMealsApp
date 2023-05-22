@@ -1,7 +1,7 @@
 # MyMealsApp
 
 # Kotlin Multiplatform Meals Application
-This app generates a random list of meals categorized by their first letter upon each refresh with their respective images. Users will have the option to mark meals as favorites. The data for the app will be retrieved from TheMealDB APIand then cache it in our local database.
+This app generates a random list of meals categorized by their first letter upon each refresh with their respective images. Users will have the option to mark meals as favorites. The data for the app will be retrieved from TheMealDB API(www.themealdb.com/api/json/v1/1) and then cache it in our local database. Additionally, users can view their favorite meals, which are stored locally in our database.
 
 <img width="1164" alt="android_ios_app" src="https://github.com/farahAtieh/MyMealsApp/assets/40662178/fa5c85fc-e797-4c62-880d-a299d9bd1442">
 
