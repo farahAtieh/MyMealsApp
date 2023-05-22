@@ -7,8 +7,9 @@ This app generates a random list of meals categorized by their first letter upon
 
 Every layer is shared except the UI.
 
-### Tech stack
-- Declarative UI with `Jetpack Compose` and `SwiftUI`
+### Built with
+- Jetpack Compose
+- SwiftUI
 - [Koin](https://github.com/InsertKoinIO/koin)
 - [Ktor](https://ktor.io/) (Backend + Client logic)
 - [Kotlinx-serialization](https://github.com/Kotlin/kotlinx.serialization)
@@ -16,6 +17,8 @@ Every layer is shared except the UI.
 - [BuildKonfig](https://github.com/yshrsmz/BuildKonfig)
 - [KMP-NativeCoroutines](https://github.com/rickclephas/KMP-NativeCoroutines)
 - [google/ksp](https://github.com/google/ksp)
+- [coil](https://github.com/coil-kt/coil) Image loading for Android
+- [Kingfisher](https://github.com/onevcat/Kingfisher) Image loading for IOS
 
 ### Targets
 - Android
