@@ -62,6 +62,7 @@ class MainViewModel: ObservableObject {
         createSingle(for: getMeals.invoke(parameterValue: getRandomChar()))
             .subscribe(
             onSuccess: { _ in
+                //There is no guarantee that suspend function will return the completion handler into the Main Thread. So we need to wrap it in DispatchQueue.main.async{…} for iOS
                 DispatchQueue.main.async {
                     self.state = State.NORMAL
                 }
@@ -74,7 +75,7 @@ class MainViewModel: ObservableObject {
     
     func fetchData(){
         state = State.LOADING
-        createSingle(for: fetchMeals.invoke(parameterValue: getRandomChar()))
+        createSingle(for: fetchMeals.invokeNative(parameterValue: getRandomChar()))
             .subscribe(onSuccess: { _ in
                 DispatchQueue.main.async {
                     self.state = State.NORMAL
