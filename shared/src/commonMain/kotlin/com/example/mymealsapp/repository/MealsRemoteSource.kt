@@ -1,7 +1,7 @@
 package com.example.mymealsapp.repository
 
 import com.example.mymealsapp.api.MealsApi
-import com.example.mymealsapp.util.DispatcherProvider
+import com.example.mymealsapp.shared.util.DispatcherProvider
 import kotlinx.coroutines.withContext
 
 internal class MealsRemoteSource(

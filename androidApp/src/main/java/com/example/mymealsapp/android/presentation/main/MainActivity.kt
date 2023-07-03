@@ -22,9 +22,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -36,11 +36,10 @@ import com.example.mymealsapp.data.Meal
 import com.google.accompanist.coil.rememberCoilPainter
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import com.example.mymealsapp.viewmodel.MainViewModel
 
 class MainActivity : ComponentActivity() {
 
-    private val viewModel by viewModel<MainViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -49,7 +48,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    MainScreen(viewModel = viewModel)
+                    MainScreen(viewModel = remember {
+                        MainViewModel()
+                    })
                 }
             }
         }
@@ -60,7 +61,6 @@ class MainActivity : ComponentActivity() {
 fun MainScreen(viewModel: MainViewModel) {
     val state by viewModel.state.collectAsState()
     val meals by viewModel.meals.collectAsState()
-    val event by viewModel.events.collectAsState(Unit)
     val isRefreshing by viewModel.isRefreshing.collectAsState()
     val shouldFilterFavourites by viewModel.shouldFilterFavourites.collectAsState()
 
@@ -93,7 +93,7 @@ fun MainScreen(viewModel: MainViewModel) {
 
                 }
                 when (state) {
-                    State.LOADING -> {
+                    MainViewModel.State.LOADING -> {
                         Spacer(modifier = Modifier.weight(1f))
                         CircularProgressIndicator(
                             Modifier.align(Alignment.CenterHorizontally)
@@ -101,12 +101,12 @@ fun MainScreen(viewModel: MainViewModel) {
                         Spacer(modifier = Modifier.weight(1f))
                     }
 
-                    State.NORMAL -> Meals(
+                    MainViewModel.State.NORMAL -> Meals(
                         meals = meals,
                         onFavouriteTapped = viewModel::onFavouriteTapped
                     )
 
-                    State.ERROR -> {
+                    MainViewModel.State.ERROR -> {
                         Log.d("FRH", "error state")
                         Spacer(Modifier.weight(1f))
                         Text(
@@ -122,7 +122,7 @@ fun MainScreen(viewModel: MainViewModel) {
                         Spacer(Modifier.weight(1f))
                     }
 
-                    State.EMPTY -> {
+                    MainViewModel.State.EMPTY -> {
                         Log.d("FRH", "empty state")
                         Spacer(Modifier.weight(1f))
                         Text(
@@ -136,14 +136,6 @@ fun MainScreen(viewModel: MainViewModel) {
                             Text(text = "REFRESH")
                         }
                         Spacer(Modifier.weight(1f))
-                    }
-                }
-                LaunchedEffect(event == Event.Error) {
-                    scaffoldState.snackbarHostState.apply {
-                        Log.d("FRH", "error event")
-                        currentSnackbarData?.dismiss()
-                        showSnackbar("Oops something went wrong..")
-
                     }
                 }
             }

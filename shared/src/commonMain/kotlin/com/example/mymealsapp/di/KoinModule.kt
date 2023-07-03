@@ -10,7 +10,7 @@ import com.example.mymealsapp.db.MealsDatabase
 import com.example.mymealsapp.repository.MealsLocalSource
 import com.example.mymealsapp.repository.MealsRemoteSource
 import com.example.mymealsapp.repository.MealsRepository
-import com.example.mymealsapp.util.getDispatcherProvider
+import com.example.mymealsapp.shared.util.getDispatcherProvider
 import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module

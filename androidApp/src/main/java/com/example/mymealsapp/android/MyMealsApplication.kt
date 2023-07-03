@@ -10,7 +10,7 @@ class MyMealsApplication: Application(){
     override fun onCreate() {
         super.onCreate()
         initKoin{
-            modules(viewModelModule)
+//            modules(viewModelModule)
             androidContext(this@MyMealsApplication)
         }
     }

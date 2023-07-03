@@ -1,4 +1,4 @@
-package com.example.mymealsapp.util
+package com.example.mymealsapp.shared.util
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers

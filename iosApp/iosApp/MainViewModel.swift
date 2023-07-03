@@ -57,7 +57,7 @@ class MainViewModel: ObservableObject {
         }).assign(to: &$filteredMeals)
     }
     
-    func getData(){
+    func getD ata(){
         state = State.LOADING
         createSingle(for: getMeals.invoke(parameterValue: getRandomChar()))
             .subscribe(

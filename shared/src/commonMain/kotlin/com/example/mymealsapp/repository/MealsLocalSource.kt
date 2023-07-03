@@ -2,7 +2,7 @@ package com.example.mymealsapp.repository
 
 import com.example.mymealsapp.data.Meal
 import com.example.mymealsapp.db.MealsDatabase
-import com.example.mymealsapp.util.DispatcherProvider
+import com.example.mymealsapp.shared.util.DispatcherProvider
 import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
 import kotlinx.coroutines.flow.map

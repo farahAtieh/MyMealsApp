@@ -12,8 +12,8 @@
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		513D30792A1B783300B64645 /* MealUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513D30782A1B783300B64645 /* MealUIView.swift */; };
 		513D307B2A1B784900B64645 /* MealsGridUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513D307A2A1B784900B64645 /* MealsGridUIView.swift */; };
-		513D307D2A1B793900B64645 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513D307C2A1B793900B64645 /* MainViewModel.swift */; };
-		513D307F2A1B79AC00B64645 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513D307E2A1B79AC00B64645 /* State.swift */; };
+		513D30812A24984500B64645 /* MealsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513D30802A24984500B64645 /* MealsState.swift */; };
+		513D30832A27343F00B64645 /* ViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513D30822A27343F00B64645 /* ViewState.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 		BEE3E2A4EC3211A350B4833C /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F0083A435F2E6A494B072D1 /* Pods_iosApp.framework */; };
 /* End PBXBuildFile section */
@@ -39,8 +39,8 @@
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		513D30782A1B783300B64645 /* MealUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealUIView.swift; sourceTree = "<group>"; };
 		513D307A2A1B784900B64645 /* MealsGridUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsGridUIView.swift; sourceTree = "<group>"; };
-		513D307C2A1B793900B64645 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
-		513D307E2A1B79AC00B64645 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		513D30802A24984500B64645 /* MealsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsState.swift; sourceTree = "<group>"; };
+		513D30822A27343F00B64645 /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
 		645643CDDCE810A49AFB04A8 /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -95,8 +95,8 @@
 				058557D7273AAEEB004C7B11 /* Preview Content */,
 				513D30782A1B783300B64645 /* MealUIView.swift */,
 				513D307A2A1B784900B64645 /* MealsGridUIView.swift */,
-				513D307C2A1B793900B64645 /* MainViewModel.swift */,
-				513D307E2A1B79AC00B64645 /* State.swift */,
+				513D30802A24984500B64645 /* MealsState.swift */,
+				513D30822A27343F00B64645 /* ViewState.swift */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -251,12 +251,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				513D307D2A1B793900B64645 /* MainViewModel.swift in Sources */,
+				513D30812A24984500B64645 /* MealsState.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				513D30832A27343F00B64645 /* ViewState.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 				513D307B2A1B784900B64645 /* MealsGridUIView.swift in Sources */,
 				513D30792A1B783300B64645 /* MealUIView.swift in Sources */,
-				513D307F2A1B79AC00B64645 /* State.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

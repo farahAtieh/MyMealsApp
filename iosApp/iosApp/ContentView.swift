@@ -4,37 +4,32 @@ import shared
 struct ContentView: View {
 
     @ObservedObject
-    private var viewModel: MainViewModel
+    private var mealsState = MealsState()
     
     init() {
         KoinModuleKt.doInitKoin()
-        viewModel = MainViewModel.init()
     }
     
     var body: some View {
         VStack{
-            Toggle("Filter favourite", isOn: $viewModel.shouldFilterFavourites)
+            Toggle("Filter favourite", isOn: $mealsState.shouldFilterFavourites)
                 .padding(16)
-            Button("Refresh Meals", action: {
-                viewModel.fetchData()
-            })
-            .frame(alignment: .center)
-            .padding(.bottom, 16)
+            
             ZStack{
-                switch viewModel.state{
-                case State.LOADING:
+                switch mealsState.state{
+                case ViewState.loading:
                     ProgressView().frame(alignment: .center)
-                case State.NORMAL:
+                case ViewState.normal:
                     MealsGridUIView(
-                        meals: viewModel.filteredMeals,
-                        onFavouriteTapped: viewModel.onFavouriteTapped)
+                        meals: mealsState.filteredMeals,
+                        onFavouriteTapped: mealsState.onFavouriteSelected)
                     
-                case State.EMPTY:
+                case ViewState.empty:
                     Text("Ooops looks like there are no meals")
                         .frame(alignment: .center)
                         .font(.headline)
                     
-                case State.ERROR:
+                case ViewState.error:
                     Text("Ooops something went wrong...")
                         .frame(alignment: .center)
                         .font(.headline)
