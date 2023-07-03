@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.mymealsapp.data.Meal
 import com.example.mymealsapp.data.usecases.FetchMealsUseCase
 import com.example.mymealsapp.data.usecases.GetMealsUseCase
+import com.example.mymealsapp.data.usecases.LookUpMealUseCase
 import com.example.mymealsapp.data.usecases.ToggleFavouriteStateUseCase
 import com.example.mymealsapp.repository.MealsRepository
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -21,7 +22,7 @@ class MainViewModel(
     mealsRepository: MealsRepository,
     private val getMeals: GetMealsUseCase,
     private val fetchMeals: FetchMealsUseCase,
-    private val onToggleFavouriteState: ToggleFavouriteStateUseCase
+    private val onToggleFavouriteState: ToggleFavouriteStateUseCase,
 ): ViewModel() {
 
     private val _state = MutableStateFlow(State.LOADING)

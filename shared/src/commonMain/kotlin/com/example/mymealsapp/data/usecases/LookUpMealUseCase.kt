@@ -6,9 +6,11 @@ import com.rickclephas.kmp.nativecoroutines.NativeCoroutines
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-class FetchMealsUseCase : KoinComponent {
+class LookUpMealUseCase: KoinComponent {
 
     private val mealsRepository: MealsRepository by inject()
+
     @NativeCoroutines
-    suspend fun invoke(parameterValue: String): List<Meal> = mealsRepository.fetch(parameterValue)
+    suspend fun invoke(mealId: String): Meal? =
+        mealsRepository.lookupMeal(mealId)
 }

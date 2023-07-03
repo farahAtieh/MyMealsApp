@@ -1,0 +1,19 @@
+CREATE TABLE mealEntity(
+    id TEXT NOT NULL,
+    name TEXT NOT NULL,
+    imageUrl TEXT NOT NULL,
+    category TEXT NOT NULL,
+    isFavourite INTEGER AS Boolean DEFAULT 0
+);
+
+insert:
+INSERT OR REPLACE INTO mealEntity(id, name, imageUrl, category, isFavourite) VALUES (?,?,?,?,?);
+
+update:
+UPDATE mealEntity SET isFavourite = ? WHERE id = ?;
+
+selectAll:
+SELECT * FROM mealEntity;
+
+clear:
+DELETE FROM mealEntity;

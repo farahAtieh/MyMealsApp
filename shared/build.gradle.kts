@@ -113,6 +113,7 @@ sqldelight{
     database("MealsDatabase"){
         packageName = "com.example.mymealsapp.db"
         sourceFolders = listOf("sqldelight")
+        deriveSchemaFromMigrations = true
     }
 }
 

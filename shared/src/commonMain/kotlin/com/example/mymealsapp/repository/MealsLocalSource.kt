@@ -13,7 +13,7 @@ internal class MealsLocalSource(
     private val dispatcherProvider: DispatcherProvider,
 ) {
 
-    private val dao = database.mealsQueries
+    private val dao = database.mealEntityQueries
     val meals = dao.selectAll()
         .asFlow()
         .mapToList()
@@ -24,16 +24,21 @@ internal class MealsLocalSource(
                     it.name,
                     it.imageUrl,
                     it.category,
-                    it.instructions,
-                    it.isFavourite ?: false
+                    isFavourite = it.isFavourite ?: false
                 )
             }
         }
 
     suspend fun selectAll() =
         withContext(dispatcherProvider.io) {
-            dao.selectAll { id, name, imageUrl, category, instructions, isFavourite ->
-                Meal(id, name, imageUrl, category, instructions, isFavourite ?: false)
+            dao.selectAll { id, name, imageUrl, category, isFavourite ->
+                Meal(
+                    id,
+                    name,
+                    imageUrl,
+                    category,
+                    isFavourite = isFavourite ?: false
+                )
             }.executeAsList()
         }
 
@@ -44,7 +49,6 @@ internal class MealsLocalSource(
                 meal.name,
                 meal.imageUrl,
                 meal.category,
-                meal.instructions,
                 meal.isFavourite
             )
         }

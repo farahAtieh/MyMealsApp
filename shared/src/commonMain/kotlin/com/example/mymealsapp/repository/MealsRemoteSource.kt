@@ -12,4 +12,9 @@ internal class MealsRemoteSource(
     suspend fun getMealsByFirstLetter(parameterValue: String) = withContext(dispatcherProvider.io) {
         mealsApi.getMealsByFirstLetter(parameterValue).meals ?: arrayListOf()
     }
+
+    suspend fun lookUpMeal(mealId: String) =
+        withContext(dispatcherProvider.io) {
+            mealsApi.lookUpMeal(mealId).meals?.get(0)
+        }
 }
