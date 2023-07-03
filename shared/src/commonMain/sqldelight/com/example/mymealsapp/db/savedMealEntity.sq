@@ -1,0 +1,28 @@
+CREATE TABLE savedMealEntity (
+    id TEXT NOT NULL PRIMARY KEY,
+    name TEXT NOT NULL,
+    imageUrl TEXT NOT NULL,
+    category TEXT NOT NULL,
+    instructions TEXT NOT NULL,
+    isSaved INTEGER AS Boolean DEFAULT 0
+);
+
+insert:
+INSERT OR REPLACE INTO savedMealEntity(id, name, imageUrl, category, instructions, isSaved)
+VALUES (?, ?, ?, ?, ?,?);
+
+selectAll:
+SELECT *
+FROM savedMealEntity;
+
+select:
+SELECT *
+FROM savedMealEntity
+WHERE id = :id;
+
+deleteById:
+DELETE FROM savedMealEntity
+WHERE id = :id;
+
+clear:
+DELETE FROM savedMealEntity;

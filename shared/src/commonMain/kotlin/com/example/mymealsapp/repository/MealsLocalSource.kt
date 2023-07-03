@@ -13,7 +13,9 @@ internal class MealsLocalSource(
     private val dispatcherProvider: DispatcherProvider,
 ) {
 
-    private val dao = database.mealsQueries
+    private val dao = database.mealEntityQueries
+    private val savedDao = database.savedMealEntityQueries
+
     val meals = dao.selectAll()
         .asFlow()
         .mapToList()
@@ -25,7 +27,7 @@ internal class MealsLocalSource(
                     it.imageUrl,
                     it.category,
                     it.instructions,
-                    it.isFavourite ?: false
+                    isFavourite = it.isFavourite ?: false
                 )
             }
         }
@@ -33,7 +35,7 @@ internal class MealsLocalSource(
     suspend fun selectAll() =
         withContext(dispatcherProvider.io) {
             dao.selectAll { id, name, imageUrl, category, instructions, isFavourite ->
-                Meal(id, name, imageUrl, category, instructions, isFavourite ?: false)
+                Meal(id, name, imageUrl, category, instructions, isFavourite = isFavourite ?: false)
             }.executeAsList()
         }
 
@@ -57,5 +59,38 @@ internal class MealsLocalSource(
     suspend fun clear() =
         withContext(dispatcherProvider.io) {
             dao.clear()
+        }
+
+    suspend fun saveMeal(meal: Meal) {
+        withContext(dispatcherProvider.io) {
+            savedDao.insert(
+                meal.id,
+                meal.name,
+                meal.imageUrl,
+                meal.category,
+                meal.instructions,
+                isSaved = true
+            )
+        }
+    }
+
+    suspend fun unSaveMeal(mealId: String) {
+        withContext(dispatcherProvider.io) {
+            savedDao.deleteById(mealId)
+        }
+    }
+
+    suspend fun getSavedMealById(mealId: String) =
+        withContext(dispatcherProvider.io) {
+            savedDao.select(mealId) { id, name, imageUrl, category, instructions, isSaved ->
+                Meal(id, name, imageUrl, category, instructions, isSaved = isSaved ?: false)
+            }.executeAsOneOrNull()
+        }
+
+    suspend fun getSavedMeals() =
+        withContext(dispatcherProvider.io) {
+            savedDao.selectAll() { id, name, imageUrl, category, instructions, isSaved ->
+                Meal(id, name, imageUrl, category, instructions, isSaved = isSaved ?: false)
+            }.executeAsList()
         }
 }

@@ -14,6 +14,7 @@ data class Meal(
     @SerialName("strCategory")
     val category: String,
     @SerialName("strInstructions")
-    val instructions: String,
-    val isFavourite: Boolean = false
+    val instructions: String = "",
+    val isFavourite: Boolean = false,
+    val isSaved: Boolean = false
 )

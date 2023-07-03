@@ -6,11 +6,12 @@ import com.rickclephas.kmp.nativecoroutines.NativeCoroutines
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-class ToggleFavouriteStateUseCase : KoinComponent {
+class LookUpMealByIdUseCase : KoinComponent {
 
     private val mealsRepository: MealsRepository by inject()
-    @NativeCoroutines
-    suspend operator fun invoke(meal: Meal) =
-        mealsRepository.update(meal.copy(isFavourite = !meal.isFavourite))
 
+    @NativeCoroutines
+    suspend fun invoke(mealId: String): Meal? {
+        return mealsRepository.getSavedMealById(mealId) ?: mealsRepository.lookUpMealById(mealId)
+    }
 }

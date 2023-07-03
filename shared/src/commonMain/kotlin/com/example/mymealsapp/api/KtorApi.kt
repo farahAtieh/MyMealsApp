@@ -5,5 +5,5 @@ import io.ktor.client.request.HttpRequestBuilder
 
 interface KtorApi {
     val client: HttpClient
-    fun HttpRequestBuilder.apiUrl(path: String, parameterValue: String)
+    fun HttpRequestBuilder.apiUrl(path: String, parameterKey: String, parameterValue: String)
 }

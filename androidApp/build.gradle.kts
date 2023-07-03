@@ -49,4 +49,9 @@ dependencies {
     val accompanistVersion = "0.13.0"
     implementation("com.google.accompanist:accompanist-coil:$accompanistVersion")
     implementation("com.google.accompanist:accompanist-swiperefresh:$accompanistVersion")
+    val nav_version = "2.5.3"
+    implementation("androidx.navigation:navigation-compose:$nav_version")
+    val koin_version = "3.4.0"
+    implementation("io.insert-koin:koin-androidx-compose:$koin_version")
+
 }

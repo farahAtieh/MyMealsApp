@@ -38,4 +38,22 @@ class MealsRepository : KoinComponent {
 
     suspend fun update(meal: Meal) =
         localSource.update(meal)
+
+    suspend fun lookUpMealById(mealId: String) =
+        remoteSource.lookUpMealById(mealId).meals?.get(0)
+
+
+    suspend fun saveMeal(meal: Meal) =
+        localSource.saveMeal(meal)
+
+    suspend fun unSaveMeal(mealId: String) =
+        localSource.unSaveMeal(mealId)
+
+    suspend fun getSavedMealById(mealId: String) =
+        localSource.getSavedMealById(mealId)
+
+    suspend fun getSavedMeals() =
+        localSource.getSavedMeals()
+
+
 }

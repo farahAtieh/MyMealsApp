@@ -5,7 +5,11 @@ import com.example.mymealsapp.api.KtorApiImpl
 import com.example.mymealsapp.api.MealsApi
 import com.example.mymealsapp.data.usecases.FetchMealsUseCase
 import com.example.mymealsapp.data.usecases.GetMealsUseCase
+import com.example.mymealsapp.data.usecases.GetSavedMealsUseCase
+import com.example.mymealsapp.data.usecases.LookUpMealByIdUseCase
+import com.example.mymealsapp.data.usecases.SaveMealUseCase
 import com.example.mymealsapp.data.usecases.ToggleFavouriteStateUseCase
+import com.example.mymealsapp.data.usecases.UnSaveMealUseCase
 import com.example.mymealsapp.db.MealsDatabase
 import com.example.mymealsapp.repository.MealsLocalSource
 import com.example.mymealsapp.repository.MealsRemoteSource
@@ -43,6 +47,10 @@ private val usecasesModule = module {
     factory { GetMealsUseCase() }
     factory { FetchMealsUseCase() }
     factory { ToggleFavouriteStateUseCase() }
+    factory { LookUpMealByIdUseCase() }
+    factory { SaveMealUseCase() }
+    factory { UnSaveMealUseCase() }
+    factory { GetSavedMealsUseCase() }
 }
 
 private val sharedModules = listOf(utilityModule, apiModule, repositoryModule, usecasesModule, platformModule)

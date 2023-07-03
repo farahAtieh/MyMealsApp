@@ -36,11 +36,15 @@ object KtorApiImpl : KtorApi {
             }
         }
 
-    override fun HttpRequestBuilder.apiUrl(path: String, parameterValue: String) {
+    override fun HttpRequestBuilder.apiUrl(
+        path: String,
+        parameterKey: String,
+        parameterValue: String,
+    ) {
         url {
             takeFrom(baseUrl)
             path("api", path)
-            parameter("f", parameterValue)
+            parameter(parameterKey, parameterValue)
         }
     }
 }
